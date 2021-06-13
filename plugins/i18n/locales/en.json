@@ -6,5 +6,6 @@
   "Host": "Host",
   "Cluster": "Cluster",
   "Components": "Components",
-  "MessageComponent": "Message"
+  "MessageComponent": "Message",
+  "SelectLanguage": "SelectLanguage"
 }

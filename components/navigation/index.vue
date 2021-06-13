@@ -12,7 +12,7 @@
           </template>
           <v-list-item v-for="(child,n) in router.children"
                        :key="n"
-                       :to="child.to"
+                       :to="'/'+ $i18n.locale + child.to"
                        link
                        class="pl-8">
             <v-list-item-icon>
@@ -26,7 +26,7 @@
       </template>
       <template v-else>
         <v-list-item :key="i"
-                     :to="router.to"
+                     :to="'/'+ $i18n.locale +router.to"
                      link>
           <v-list-item-icon>
             <v-icon v-text="router.icon"></v-icon>

@@ -6,5 +6,6 @@
   "Host": "主机",
   "Cluster": "集群",
   "Components": "组件集",
-  "MessageComponent": "消息组件"
+  "MessageComponent": "消息组件",
+  "SelectLanguage": "选择语言"
 }
