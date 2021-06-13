@@ -60,7 +60,14 @@ export default {
       console.log(this.$i18n.locale)
       console.log(this.$route.fullPath)
       if (lang != this.$i18n.locale) {
-
+         var rpath = ''
+        if(this.$i18n.locale == this.$i18n.fallbackLocale){
+          rpath = '/'+lang+this.$route.fullPath
+        }else{
+          rpath = this.$route.fullPath.replace(this.$i18n.locale,lang)
+        }
+        console.log(rpath)
+        this.$router.push(rpath)
       }
     }
   }
