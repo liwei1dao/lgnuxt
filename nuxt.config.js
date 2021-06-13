@@ -18,12 +18,17 @@ export default {
     ]
   },
 
+  router: {
+    middleware: 'i18n'
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/i18n/'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

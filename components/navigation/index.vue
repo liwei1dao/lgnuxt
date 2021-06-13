@@ -7,7 +7,7 @@
                       :prepend-icon="router.icon">
           <template v-slot:activator>
             <v-list-item-content>
-              <v-list-item-title v-text="router.title"></v-list-item-title>
+              <v-list-item-title v-text="$t(router.title)"></v-list-item-title>
             </v-list-item-content>
           </template>
           <v-list-item v-for="(child,n) in router.children"
@@ -19,7 +19,7 @@
               <v-icon v-text="child.icon"></v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title v-text="child.title"></v-list-item-title>
+              <v-list-item-title v-text="$t(child.title)"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
@@ -32,7 +32,7 @@
             <v-icon v-text="router.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="router.title"></v-list-item-title>
+            <v-list-item-title v-text="$t(router.title)"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </template>
@@ -52,13 +52,13 @@ export default {
             title: 'Console', icon: 'mdi-console', to: '/console',
             children: [
               {
-                title: 'ProjjectInfo', icon: 'mdi-card-text', to: '/console/',
+                title: 'Project', icon: 'mdi-card-text', to: '/console/project',
               },
               {
-                title: 'HostInfo', icon: 'mdi-laptop', to: '/console/hostInfo',
+                title: 'Host', icon: 'mdi-laptop', to: '/console/host',
               },
               {
-                title: 'ClusterInfo', icon: 'mdi-server-network', to: '/console/clusterInfo',
+                title: 'Cluster', icon: 'mdi-server-network', to: '/console/cluster',
               },
             ]
           },

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>clusterInfo</v-card-title>
+    <v-card-title>message</v-card-title>
   </v-card>
 </template>
 

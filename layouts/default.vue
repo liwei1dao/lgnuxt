@@ -71,13 +71,13 @@ export default {
           title: 'Console', icon: 'mdi-console', to: '/console',
           children: [
             {
-              title: 'ProInfo', icon: 'mdi-card-text', to: '/console/proInfo',
+              title: 'Project', icon: 'mdi-card-text', to: '/console/project',
             },
             {
-              title: 'HostInfo', icon: 'mdi-laptop', to: '/console/hostInfo',
+              title: 'Host', icon: 'mdi-laptop', to: '/console/host',
             },
             {
-              title: 'ClusterInfo', icon: 'mdi-server-network', to: '/console/clusterInfo',
+              title: 'Cluster', icon: 'mdi-server-network', to: '/console/cluster',
             },
           ]
         },
@@ -85,7 +85,7 @@ export default {
           title: 'Components', icon: 'mdi-video-input-component', to: '/components',
           children: [
             {
-              title: 'Message', icon: 'mdi-card-text', to: '/components/message',
+              title: 'MessageComponent', icon: 'mdi-card-text', to: '/components/message',
             },
           ]
         }
