@@ -28,7 +28,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/i18n/'
+    '~/plugins/i18n/',
+    '~/plugins/api/'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,6 +43,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -65,5 +67,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  //需要代理，可以打开底下的注释
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': 'https://127.0.0.1:9567/'
+  },
 }
