@@ -1,24 +1,20 @@
 import Vue from 'vue'
-import Main from './Message.vue'
+import MessageVue from './message.vue'
 
-let MessageConstructor = Vue.extend(Main)
+let MessageConstructor = Vue.extend(MessageVue)
 
 let instance
 let instances = []
 let seed = 1
-const Message = function (options, color, icon, typeClass) {
-  options = options || {}
-  if (typeof options === 'string') {
-    options = {
-      message: options,
-      color: color,
-      icon: icon,
-      typeClass: typeClass
-    }
-  }
+const Message = function (message, color, icon, typeClass) {
   let id = 'message_' + seed++
   instance = new MessageConstructor({
-    data: options
+    propsData: {
+      message: message,
+      color: color,
+      icon: icon,
+      typeClass: typeClass,
+    }
   })
   instance.id = id
   instance.vm = instance.$mount()
@@ -30,11 +26,16 @@ const Message = function (options, color, icon, typeClass) {
   return instance.vm
 }
 
-Message.success = function (option) {
-  Message(option, "#67c23a", "beenhere", "message--success")
+Message.success = function (message) {
+  Message(message, "#67c23a", "mdi-marker-check", "message--success")
 }
-Message.error = function (option) {
-  Message(option, "#CC0033", "mdi-backspace", "message--error")
+
+Message.alert = function (message) {
+  Message(message, "#67c23a", "mdi-alert", "message--alert")
+}
+
+Message.error = function (message) {
+  Message(message, "#CC0033", "mdi-backspace", "message--error")
 }
 
 Message.close = function (id) {
@@ -51,5 +52,4 @@ Message.closeAll = function () {
     instances[i].close()
   }
 }
-
 export default Message
