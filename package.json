@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/proxy": "^2.1.0",
+    "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "flag-icon-css": "^3.5.0",
+    "js-md5": "^0.7.3",
     "nuxt": "^2.15.3",
-    "vue-i18n": "^8.24.4"
+    "vue-i18n": "^8.24.4",
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

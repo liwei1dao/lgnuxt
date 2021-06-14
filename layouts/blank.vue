@@ -1,7 +1,9 @@
 <template>
-  <v-card>
-    <v-card-title>message</v-card-title>
-  </v-card>
+  <v-app>
+    <v-main>
+      <nuxt />
+    </v-main>
+  </v-app>
 </template>
 
 <script>

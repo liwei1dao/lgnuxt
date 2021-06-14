@@ -1,6 +1,7 @@
 export const state = () => ({
   locales: ['en', 'zh'],
-  locale: 'zh'
+  locale: 'zh',
+  token: null,
 })
 
 export const mutations = {
@@ -8,5 +9,8 @@ export const mutations = {
     if (state.locales.includes(locale)) {
       state.locale = locale
     }
-  }
+  },
+  Set_token (state, token) {
+    state.token = token
+  },
 }

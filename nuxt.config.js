@@ -44,6 +44,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -64,15 +65,20 @@ export default {
       }
     }
   },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
-  //需要代理，可以打开底下的注释
   axios: {
+    // prefix: 'http://127.0.0.1:9567/',
     proxy: true
   },
   proxy: {
-    '/api/': 'https://127.0.0.1:9567/'
+    '/lego': {
+      target: 'http://127.0.0.1:9567',
+      pathRewrite: {
+        '^/lego': '/lego'
+      }
+    }
+  },
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    vendor: ["axios"]
   },
 }
