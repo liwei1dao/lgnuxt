@@ -7,5 +7,11 @@
   "Cluster": "Cluster",
   "Components": "Components",
   "MessageComponent": "Message",
-  "SelectLanguage": "SelectLanguage"
+  "SelectLanguage": "SelectLanguage",
+  "GetCaptcha": "Get Code",
+  "Register": "Register",
+  "Login": "Login",
+  "E-mail": "E-mail",
+  "Password": "Password",
+  "Confirmpassword": "Confirm Password"
 }

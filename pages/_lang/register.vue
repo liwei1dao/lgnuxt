@@ -10,13 +10,14 @@
         <v-form ref="form"
                 lazy-validation>
           <v-text-field v-model="email"
+                        ref="email"
                         :rules="emailRules"
-                        label="E-mail"
+                        :label="$t('E-mail')"
                         required></v-text-field>
           <v-text-field v-model="password"
                         :rules="passwordRules"
                         :counter="10"
-                        label="Password"
+                        :label="$t('Password')"
                         :append-icon="passwordeye ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="passwordeye ? 'text' : 'password'"
                         required
@@ -24,7 +25,7 @@
           <v-text-field v-model="confirmpassword"
                         :rules="confirmpasswordRules"
                         :counter="10"
-                        label="Confirmpassword"
+                        :label="$t('Confirmpassword')"
                         :append-icon="passwordeye ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="passwordeye ? 'text' : 'password'"
                         required
@@ -32,16 +33,18 @@
           <v-text-field v-model="captcha"
                         :rules="captchaRules"
                         :counter="4"
-                        label="Captcha"
                         required>
             <template v-slot:append>
               <v-btn color="primary text-capitalize"
+                     width="120"
+                     :disabled="captchaDisabled"
                      @click="getcaptcha"
-                     dark>{{$t('Captcha')}}</v-btn>
+                     depressed>{{captchabuttstr}}</v-btn>
             </template>
           </v-text-field>
           <v-btn class="mr-4 text-capitalize"
                  color="warning"
+                 @click="registerbycaptcha"
                  block>
             {{$t('Register')}}
           </v-btn>
@@ -78,6 +81,7 @@ export default {
         v => !!v || 'Password is required',
         v => (v && v.length == 4) || 'Captcha must be less than 4 characters',
       ],
+      // ,
       passwordeye: false,
       captchaDisabled: false,
       captchatimer: null,
@@ -92,11 +96,52 @@ export default {
         (v) => (v === this.password) || 'Senhas diferentes!',
       ];
     },
+    captchabuttstr () {
+      if (this.captchatimer) {
+        return this.captchaLiftTime
+      }
+      return this.$t('GetCaptcha')
+    }
   },
   methods: {
     getcaptcha () {
-      this.$sendemailcaptcha({ PhonOrEmail: this.phonoremail, CaptchaType: 0 })
+      if (!this.$refs.email.validate()) {
+        this.$message.error("E-mail must be valid")
+        return
+      }
+      this.captchaDisabled = true
+      this.$sendemailcaptcha({ PhonOrEmail: this.email, CaptchaType: 0 }).then(response => {
+        const { message } = response
+        this.$message.success(message)
+        if (!this.captchatimer) {//启动计时器
+          this.captchatimer = setInterval(() => {
+            if (this.captchaLiftTime > 0 && this.captchaLiftTime <= 60) {
+              this.captchaLiftTime--;
+              if (this.captchaLiftTime == 0) {
+                clearInterval(this.captchatimer);
+                this.captchaLiftTime = 60;
+                this.captchatimer = null;
+                this.captchaDisabled = false;
+              }
+            }
+          }, 1000)
+        }
+      }).catch(error => {
+        this.$message.error(error.message)
+        this.captchaDisabled = false
+        this.captchaLiftTime = 60
+      })
     },
+    registerbycaptcha () {
+      if (this.$refs.form.validate()) {
+        this.$registerbycaptcha({ PhonOrEmail: this.email, Password: this.password, Captcha: this.captcha }).then(response => {
+          const { message } = response
+          this.$message.success(message)
+        }).catch(error => {
+          this.$message.error(error.message)
+        })
+      }
+    }
   }
 }
 </script>

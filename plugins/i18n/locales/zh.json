@@ -7,5 +7,11 @@
   "Cluster": "集群",
   "Components": "组件集",
   "MessageComponent": "消息组件",
-  "SelectLanguage": "选择语言"
+  "SelectLanguage": "选择语言",
+  "GetCaptcha": "获取验证码",
+  "Register": "注册",
+  "Login": "登录",
+  "E-mail": "邮箱",
+  "Password": "密码",
+  "Confirmpassword": "确认密码"
 }

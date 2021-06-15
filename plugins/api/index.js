@@ -1,16 +1,17 @@
 import Message from '@/components/message/'
 import { paramsign } from './md5'
-import { sendemailcaptcha } from './api/console'
+import { sendemailcaptcha, registerbycaptcha, loginbypassword, getuserinfo } from './api/console'
 
-export default function ({ store, $axios, redirect }, inject) {
+export default function ({ app, store, $axios, redirect }, inject) {
   $axios.interceptors.request.use(
     request => {
       if (request.data != null) {
         console.log(request.data)
         request.data = paramsign(request.data)
       }
-      if (store.state.token != null) {
-        request.headers['X-Token'] = store.state.token
+      const token = app.$cookies.get('User-Token')
+      if (token != null) {
+        request.headers['X-Token'] = token
         console.log("X-Token" + request.headers['X-Token'])
       }
       return request
@@ -23,6 +24,7 @@ export default function ({ store, $axios, redirect }, inject) {
   $axios.interceptors.response.use(
     response => {
       const res = response.data
+      console.log('response:' + JSON.stringify(response.baseURL) + "|res:" + JSON.stringify(res))
       if (res.code === 0) {
         return res
       } else if (res.code === 17) {
@@ -37,5 +39,8 @@ export default function ({ store, $axios, redirect }, inject) {
       return Promise.reject(error)
     }
   )
-  inject('sendemailcaptcha', params => $axios(sendemailcaptcha(params)))
+  inject('sendemailcaptcha', params => { return $axios(sendemailcaptcha(params)) })
+  inject('registerbycaptcha', params => { return $axios(registerbycaptcha(params)) })
+  inject('loginbypassword', params => { return $axios(loginbypassword(params)) })
+  inject('getuserinfo', params => { return $axios(getuserinfo(params)) })
 }

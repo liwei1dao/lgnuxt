@@ -1,7 +1,7 @@
 export const state = () => ({
   locales: ['en', 'zh'],
   locale: 'zh',
-  token: null,
+  user: null,
 })
 
 export const mutations = {
@@ -10,7 +10,11 @@ export const mutations = {
       state.locale = locale
     }
   },
-  Set_token (state, token) {
-    state.token = token
+  Set_user: (state, user) => {
+    if (user != null) {
+      state.user = user
+    } else {
+      state.user = null
+    }
   },
 }

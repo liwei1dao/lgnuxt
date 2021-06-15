@@ -19,7 +19,7 @@ export default {
   },
 
   router: {
-    middleware: 'i18n'
+    middleware: ['i18n', 'auth']
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -46,6 +46,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    'cookie-universal-nuxt',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
