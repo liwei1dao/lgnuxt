@@ -1,6 +1,6 @@
-export default function ({ app, redirect, cookies, store }) {
+export default function ({ app, redirect, store }) {
   if (!store.state.user) {
-    const token = cookies.get('User-Token')
+    const token = app.$cookies.get('User-Token')
     if (token != null) {
       app.$getuserinfo(null).then(response => {
         const { data } = response

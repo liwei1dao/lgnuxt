@@ -1,6 +1,6 @@
 import Message from '@/components/message/'
 import { paramsign } from './md5'
-import { sendemailcaptcha, registerbycaptcha, loginbypassword, getuserinfo } from './api/console'
+import { sendemailcaptcha, registerbycaptcha, loginbypassword, getuserinfo, loginout, getprojectinfo, gethostinfo } from './api/console'
 
 export default function ({ app, store, $axios, redirect }, inject) {
   $axios.interceptors.request.use(
@@ -43,4 +43,7 @@ export default function ({ app, store, $axios, redirect }, inject) {
   inject('registerbycaptcha', params => { return $axios(registerbycaptcha(params)) })
   inject('loginbypassword', params => { return $axios(loginbypassword(params)) })
   inject('getuserinfo', params => { return $axios(getuserinfo(params)) })
+  inject('loginout', params => { return $axios(loginout(params)) })
+  inject('getprojectinfo', params => { return $axios(getprojectinfo(params)) })
+  inject('gethostinfo', params => { return $axios(gethostinfo(params)) })
 }

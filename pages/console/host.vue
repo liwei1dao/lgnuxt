@@ -1,14 +1,4 @@
-<template>
-  <v-card>
-    <v-card-title>hostInfo</v-card-title>
-  </v-card>
-</template>
-
 <script>
-export default {
-
-}
+import Host from '~/pages/_lang/console/host'
+export default Host
 </script>
-
-<style>
-</style>

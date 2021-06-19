@@ -1,14 +1,4 @@
-<template>
-  <v-card>
-    <v-card-title>proInfo</v-card-title>
-  </v-card>
-</template>
-
 <script>
-export default {
-
-}
+import Project from '~/pages/_lang/console/project'
+export default Project
 </script>
-
-<style>
-</style>
